@@ -119,7 +119,8 @@ Then open a Pull Request.
 👨‍💻 Author
 
 Dhruv Mittal
-Anukriti Jain
+Anukriti Jain 
 GitHub: https://github.com/Dhruv-9927
+        https://github.com/anukriti-1209
 
 "The stock market is a device for transferring money from the impatient to the patient." — Warren Buffett
