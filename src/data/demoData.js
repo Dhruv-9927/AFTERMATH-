@@ -146,6 +146,45 @@ export const DEMO_INFLATION = {
   inflationRate: 6.5,
 };
 
+// Portfolio X-Ray demo
+export const DEMO_PORTFOLIO = [
+  {
+    name: 'Parag Parikh Flexi Cap',
+    category: 'Flexi Cap', units: 1820.45, nav: 78.20, invested: 120000,
+    currentValue: 142319, gain: 22319, gainPct: 18.6,
+    expenseRatio: 0.63, benchmark: 'Nifty 500',
+    topHoldings: ['HDFC Bank', 'Bajaj Holdings', 'ITC', 'Power Grid', 'Alphabet Inc', 'Microsoft', 'Coal India', 'HCL Technologies', 'ICICI Bank', 'Maruti Suzuki'],
+  },
+  {
+    name: 'HDFC Mid-Cap Opportunities',
+    category: 'Mid Cap', units: 245.32, nav: 412.50, invested: 75000,
+    currentValue: 101195, gain: 26195, gainPct: 34.9,
+    expenseRatio: 1.64, benchmark: 'Nifty Midcap 150',
+    topHoldings: ['Persistent Systems', 'Indian Hotels', 'Max Healthcare', 'Coforge', 'Trent', 'Tube Investments', 'Sundaram Finance', 'Cholamandalam Inv', 'Balkrishna Ind', 'Cummins India'],
+  },
+  {
+    name: 'Axis Bluechip Fund',
+    category: 'Large Cap', units: 512.80, nav: 52.30, invested: 200000,
+    currentValue: 26819, gain: -173181, gainPct: -86.6,
+    expenseRatio: 1.56, benchmark: 'Nifty 50',
+    topHoldings: ['HDFC Bank', 'Bajaj Finance', 'TCS', 'Infosys', 'ICICI Bank', 'HUL', 'Kotak Mahindra', 'Avenue Supermarts', 'Titan Company', 'Reliance Industries'],
+  },
+  {
+    name: 'SBI Small Cap Fund',
+    category: 'Small Cap', units: 328.60, nav: 158.40, invested: 35000,
+    currentValue: 52050, gain: 17050, gainPct: 48.7,
+    expenseRatio: 1.55, benchmark: 'Nifty Smallcap 250',
+    topHoldings: ['Blue Star', 'Finolex Industries', 'Chalet Hotels', 'IIFL Finance', 'Kalpataru Projects', 'Carborundum Universal', 'Praj Industries', 'Safari Industries', 'CAMS', 'Radico Khaitan'],
+  },
+  {
+    name: 'Mirae Asset Large Cap',
+    category: 'Large Cap', units: 680.20, nav: 103.50, invested: 55000,
+    currentValue: 70401, gain: 15401, gainPct: 28.0,
+    expenseRatio: 1.39, benchmark: 'Nifty 100',
+    topHoldings: ['HDFC Bank', 'ICICI Bank', 'Reliance Industries', 'Infosys', 'Bharti Airtel', 'TCS', 'Larsen & Toubro', 'Axis Bank', 'State Bank of India', 'ITC'],
+  },
+];
+
 // Full demo state for AppContext
 export function loadFullDemoState(dispatch) {
   dispatch({ type: 'SET_USER_DATA', payload: DEMO_USER });
@@ -164,5 +203,7 @@ export function loadFullDemoState(dispatch) {
     reVsSip: DEMO_RE_VS_SIP,
     generational: DEMO_GENERATIONAL,
     inflation: DEMO_INFLATION,
+    portfolio: DEMO_PORTFOLIO,
   }});
 }
+

@@ -30,8 +30,7 @@ const GROUPS = [
     items: [
       { name: '₹1Cr Challenge', path: '/crore-challenge', icon: Sparkles },
       { name: 'Budget Roast', path: '/budget-roast', icon: AlertCircle },
-      { name: 'Villain Detector', path: '/spending-villain', icon: Activity },
-      { name: 'Inflation Monster', path: '/inflation-monster', icon: TrendingUp },
+      { name: 'Portfolio X-Ray', path: '/portfolio-xray', icon: Activity },
       { name: 'Time Machine', path: '/time-machine', icon: Settings },
       { name: 'Regret Engine', path: '/regret', icon: AlertCircle },
     ]

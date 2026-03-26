@@ -156,14 +156,14 @@ export default function Dashboard() {
                 { emoji: '🔥', name: 'Budget Roast', desc: 'Get roasted. Get fixed.', path: '/budget-roast', color: 'from-orange-500/10 to-transparent' },
                 { emoji: '🕰️', name: 'Time Machine', desc: 'What if you invested then?', path: '/time-machine', color: 'from-blue-500/10 to-transparent' },
                 { emoji: '🏆', name: '₹1Cr Challenge', desc: 'How fast can you get there?', path: '/crore-challenge', color: 'from-gold/10 to-transparent' },
-                { emoji: '👹', name: 'Inflation Monster', desc: 'Watch it eat your savings.', path: '/inflation-monster', color: 'from-red-500/10 to-transparent' },
+                { emoji: '🔬', name: 'Portfolio X-Ray', desc: 'Scan your mutual funds.', path: '/portfolio-xray', color: 'from-cyan-500/10 to-transparent' },
                 { emoji: '💼', name: 'Salary Coach', desc: 'Are you being underpaid?', path: '/salary-coach', color: 'from-green-500/10 to-transparent' },
                 { emoji: '🏠', name: 'RE vs SIP', desc: 'The ultimate Indian battle.', path: '/real-estate-vs-sip', color: 'from-purple-500/10 to-transparent' },
                 { emoji: '🧘', name: 'Market Guru', desc: '3 legends, 3 different answers.', path: '/market-guru', color: 'from-indigo-500/10 to-transparent' },
                 { emoji: '😱', name: 'Fear Index', desc: "What's your money anxiety?", path: '/fear-index', color: 'from-pink-500/10 to-transparent' },
                 { emoji: '💔', name: 'Regret Engine', desc: 'The real cost of excuses.', path: '/regret', color: 'from-red-500/10 to-transparent' },
                 { emoji: '💑', name: 'Couples Mode', desc: 'Merge your financial futures.', path: '/couples', color: 'from-pink-500/10 to-transparent' },
-                { emoji: '🦹', name: 'Villain Detector', desc: 'Your worst money habit, exposed.', path: '/spending-villain', color: 'from-yellow-500/10 to-transparent' },
+
                 { emoji: '📖', name: 'Glossary', desc: '50+ terms explained simply.', path: '/glossary', color: 'from-cyan-500/10 to-transparent' },
               ].map((f, i) => (
                 <Link key={f.path} to={f.path}>

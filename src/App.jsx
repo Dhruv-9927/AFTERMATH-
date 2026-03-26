@@ -30,8 +30,7 @@ import CroreChallenge from './pages/CroreChallenge';
 import PassiveIncomeDashboard from './pages/PassiveIncomeDashboard';
 import SalaryCoach from './pages/SalaryCoach';
 import BudgetRoast from './pages/BudgetRoast';
-import SpendingVillain from './pages/SpendingVillain';
-import InflationMonster from './pages/InflationMonster';
+import PortfolioXRay from './pages/PortfolioXRay';
 import GenerationalWealth from './pages/GenerationalWealth';
 import RealEstateVsSIP from './pages/RealEstateVsSIP';
 import WhatsAppNudge from './pages/WhatsAppNudge';
@@ -115,8 +114,7 @@ function App() {
           <Route path="/passive-income" element={<PassiveIncomeDashboard />} />
           <Route path="/salary-coach" element={<SalaryCoach />} />
           <Route path="/budget-roast" element={<BudgetRoast />} />
-          <Route path="/spending-villain" element={<SpendingVillain />} />
-          <Route path="/inflation-monster" element={<InflationMonster />} />
+          <Route path="/portfolio-xray" element={<PortfolioXRay />} />
           <Route path="/generational-wealth" element={<GenerationalWealth />} />
           <Route path="/real-estate-vs-sip" element={<RealEstateVsSIP />} />
           <Route path="/whatsapp-nudge" element={<WhatsAppNudge />} />
