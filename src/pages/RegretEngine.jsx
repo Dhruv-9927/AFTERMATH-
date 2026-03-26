@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Clock, TrendingDown, Flame } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useApp } from '../context/AppContext';
 
 const SCENARIOS = [
   {
@@ -73,9 +74,17 @@ const SCENARIOS = [
 
 export default function RegretEngine() {
   const navigate = useNavigate();
-  const [income, setIncome] = useState('');
+  const { state } = useApp();
+  const demo = state.demoData?.regret;
+  const [income, setIncome] = useState(demo ? String(demo.income) : '');
   const [selected, setSelected] = useState(null);
   const [showResult, setShowResult] = useState(false);
+
+  useEffect(() => {
+    if (state.demoData?.regret) {
+      setIncome(String(state.demoData.regret.income));
+    }
+  }, [state.demoData]);
 
   const incomeNum = parseInt(income) || 60000;
 

@@ -1,14 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, DollarSign, TrendingUp, Crown } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useApp } from '../context/AppContext';
 
 export default function PassiveIncomeDashboard() {
   const navigate = useNavigate();
+  const { state } = useApp();
+  const demoP = state.demoData?.passive;
   const [years, setYears] = useState(10);
-  const [monthlyExpense] = useState(55000);
-  const [invested] = useState(200000);
-  const [monthlySIP] = useState(15000);
+  const [monthlyExpense, setMonthlyExpense] = useState(demoP?.monthlyExpenses || 55000);
+  const [invested, setInvested] = useState(demoP?.sipCorpus || 200000);
+  const [monthlySIP, setMonthlySIP] = useState(demoP ? 25000 : 15000);
+
+  useEffect(() => {
+    if (state.demoData?.passive) {
+      setMonthlyExpense(state.demoData.passive.monthlyExpenses);
+      setInvested(state.demoData.passive.sipCorpus);
+      setMonthlySIP(25000);
+    }
+  }, [state.demoData]);
 
   const rate = 0.12;
   const totalMonths = years * 12;

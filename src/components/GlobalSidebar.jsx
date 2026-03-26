@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Activity, Fingerprint, TrendingUp, Calculator, Heart, Settings, ArrowUpRight, AlertCircle, Sparkles } from 'lucide-react';
+import { LayoutDashboard, Activity, Fingerprint, TrendingUp, Calculator, Heart, Settings, ArrowUpRight, AlertCircle, Sparkles, BookOpen } from 'lucide-react';
 import Logo from './Logo';
 
 const GROUPS = [
@@ -42,6 +42,7 @@ const GROUPS = [
       { name: 'Couples Mode', path: '/couples', icon: Heart },
       { name: 'Fear Index', path: '/fear-index', icon: Fingerprint },
       { name: 'WhatsApp Nudge', path: '/whatsapp-nudge', icon: Sparkles },
+      { name: 'Glossary', path: '/glossary', icon: BookOpen },
     ]
   },
 ];

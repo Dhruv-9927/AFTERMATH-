@@ -3,14 +3,24 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, Sparkles, ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { pageEnter } from '../animations/variants';
+import { useApp } from '../context/AppContext';
 import gsap from 'gsap';
 
 export default function CouplesMode() {
   const navigate = useNavigate();
-  const [partner1, setPartner1] = useState({ name: '', income: '', investments: '', sec80c: '', hra: 'none' });
-  const [partner2, setPartner2] = useState({ name: '', income: '', investments: '', sec80c: '', hra: 'none' });
+  const { state } = useApp();
+  const demo = state.demoData?.couples;
+  const [partner1, setPartner1] = useState(demo?.partner1 || { name: '', income: '', investments: '', sec80c: '', hra: 'none' });
+  const [partner2, setPartner2] = useState(demo?.partner2 || { name: '', income: '', investments: '', sec80c: '', hra: 'none' });
   const [merged, setMerged] = useState(false);
   const [isMerging, setIsMerging] = useState(false);
+
+  useEffect(() => {
+    if (state.demoData?.couples) {
+      setPartner1(state.demoData.couples.partner1);
+      setPartner2(state.demoData.couples.partner2);
+    }
+  }, [state.demoData]);
 
   const startMerge = () => {
     if (!partner1.income || !partner2.income) return;

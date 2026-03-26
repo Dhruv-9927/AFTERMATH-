@@ -1,14 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Flame, Sparkles } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useApp } from '../context/AppContext';
 
 const CATEGORIES = ['Food Delivery', 'Shopping', 'Subscriptions', 'Travel', 'Groceries', 'Rent/EMI', 'Entertainment', 'Investments', 'Insurance', 'Other'];
 
 export default function BudgetRoast() {
   const navigate = useNavigate();
-  const [spending, setSpending] = useState({});
+  const { state } = useApp();
+  const demoB = state.demoData?.budget;
+  const [spending, setSpending] = useState(demoB ? {
+    'Food Delivery': demoB.foodDelivery,
+    'Shopping': demoB.shopping,
+    'Subscriptions': demoB.subscriptions,
+    'Travel': demoB.travel,
+    'Groceries': demoB.groceries,
+    'Rent/EMI': 15000,
+    'Entertainment': demoB.entertainment,
+    'Investments': 25000,
+    'Insurance': 2000,
+    'Other': demoB.others,
+  } : {});
   const [roasted, setRoasted] = useState(false);
+
+  useEffect(() => {
+    if (state.demoData?.budget) {
+      const b = state.demoData.budget;
+      setSpending({
+        'Food Delivery': b.foodDelivery,
+        'Shopping': b.shopping,
+        'Subscriptions': b.subscriptions,
+        'Travel': b.travel,
+        'Groceries': b.groceries,
+        'Rent/EMI': 15000,
+        'Entertainment': b.entertainment,
+        'Investments': 25000,
+        'Insurance': 2000,
+        'Other': b.others,
+      });
+    }
+  }, [state.demoData]);
 
   const updateCat = (cat, val) => setSpending({...spending, [cat]: parseInt(val) || 0});
 
@@ -54,7 +86,7 @@ export default function BudgetRoast() {
             {CATEGORIES.map(cat => (
               <div key={cat} className="flex items-center gap-4 bg-card p-4 rounded-xl border border-white/5">
                 <span className="text-sm font-medium text-gray-300 w-32 shrink-0">{cat}</span>
-                <input type="number" placeholder="₹ 0" onChange={e => updateCat(cat, e.target.value)}
+                <input type="number" placeholder="₹ 0" value={spending[cat] || ''} onChange={e => updateCat(cat, e.target.value)}
                   className="flex-1 bg-navy border border-white/10 rounded-lg px-4 py-2 text-white outline-none focus:border-gold text-right" />
               </div>
             ))}

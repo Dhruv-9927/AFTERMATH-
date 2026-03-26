@@ -2,13 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Trophy, Rocket, TrendingUp, Scissors, Award } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useApp } from '../context/AppContext';
 
 export default function CroreChallenge() {
   const navigate = useNavigate();
-  const [savings, setSavings] = useState(200000);
-  const [monthly, setMonthly] = useState(10000);
+  const { state } = useApp();
+  const demoC = state.demoData?.crore;
+  const [savings, setSavings] = useState(demoC?.existingCorpus || 200000);
+  const [monthly, setMonthly] = useState(demoC?.monthlySIP || 10000);
   const [rate] = useState(12);
   const [simulations, setSimulations] = useState({ base: null, moreSip: null, raise: null, cutExpense: null });
+
+  useEffect(() => {
+    if (state.demoData?.crore) {
+      setSavings(state.demoData.crore.existingCorpus);
+      setMonthly(state.demoData.crore.monthlySIP);
+    }
+  }, [state.demoData]);
 
   const TARGET = 10000000; // 1 crore
 

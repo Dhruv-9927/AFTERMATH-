@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Briefcase, TrendingUp, MessageSquare, Send } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useApp } from '../context/AppContext';
 
 const MARKET_DATA = {
   'Software Engineer': { '0-2': 600000, '2-5': 1200000, '5-10': 2400000, '10+': 4000000 },
@@ -18,10 +19,19 @@ const CITY_MULT = { 'Mumbai': 1.15, 'Bangalore': 1.1, 'Delhi': 1.05, 'Hyderabad'
 
 export default function SalaryCoach() {
   const navigate = useNavigate();
-  const [step, setStep] = useState('input'); // input | results | roleplay
-  const [form, setForm] = useState({ salary: '', title: 'Software Engineer', experience: '2-5', city: 'Bangalore', company: 'product' });
+  const { state } = useApp();
+  const demoS = state.demoData?.salary;
+  const [step, setStep] = useState('input');
+  const [form, setForm] = useState(demoS ? { salary: String(demoS.currentSalary * 12), title: demoS.jobTitle, experience: '2-5', city: demoS.city, company: 'product' } : { salary: '', title: 'Software Engineer', experience: '2-5', city: 'Bangalore', company: 'product' });
   const [chat, setChat] = useState([]);
   const [msg, setMsg] = useState('');
+
+  useEffect(() => {
+    if (state.demoData?.salary) {
+      const d = state.demoData.salary;
+      setForm({ salary: String(d.currentSalary * 12), title: d.jobTitle, experience: '2-5', city: d.city, company: 'product' });
+    }
+  }, [state.demoData]);
 
   const currentSalary = parseInt(form.salary) || 0;
   const expKey = form.experience;

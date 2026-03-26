@@ -10,10 +10,12 @@ import { pageEnter, staggerContainer, fadeUp } from '../animations/variants';
 import { countUpNumber } from '../animations/gsapHelpers';
 import { askGeminiJSON } from '../services/geminiService';
 import Logo from '../components/Logo';
+import { loadFullDemoState } from '../data/demoData';
+import toast from 'react-hot-toast';
 import gsap from 'gsap';
 
 export default function Dashboard() {
-  const { state } = useApp();
+  const { state, dispatch } = useApp();
   const userData = state.userData || { name: 'Rahul', monthlyIncome: 85000, monthlyExpenses: 55000, investments: 50000, debtAmount: 300000 };
   const healthData = state.healthScore || { score: 72, actions: [{title: "Open PPF", desc: "Start 80C tax saving"}, {title: "Buy Term Plan", desc: "Protect your family"}, {title: "Increase SIP", desc: "Beat inflation"}] };
   
@@ -46,12 +48,22 @@ export default function Dashboard() {
           
           {/* Hero */}
           <div className="mb-10">
-            <h1 className="text-4xl font-black mb-2 flex items-center">
-              Welcome back, {userData.name || 'Investor'} <span className="ml-3 wave-emoji">👋</span>
-            </h1>
-            <p className="text-gray-400 font-medium">
-              {format(new Date(), 'EEEE, MMMM do, yyyy')} • "The best time to plant a tree was 20 years ago. The second best time is now."
-            </p>
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <div>
+                <h1 className="text-4xl font-black mb-2 flex items-center">
+                  Welcome back, {userData.name || 'Investor'} <span className="ml-3 wave-emoji">👋</span>
+                </h1>
+                <p className="text-gray-400 font-medium">
+                  {format(new Date(), 'EEEE, MMMM do, yyyy')} • "The best time to plant a tree was 20 years ago."
+                </p>
+              </div>
+              <button
+                onClick={() => { loadFullDemoState(dispatch); toast.success('Demo data loaded for all features!'); }}
+                className="shrink-0 px-5 py-2.5 bg-gradient-to-r from-gold/20 to-purple-500/20 border border-gold/30 rounded-xl text-sm font-bold text-gold hover:from-gold/30 hover:to-purple-500/30 transition-all flex items-center gap-2"
+              >
+                <Sparkles size={16} /> Load Demo Data
+              </button>
+            </div>
           </div>
 
           <div className="grid lg:grid-cols-3 gap-8">
@@ -149,6 +161,10 @@ export default function Dashboard() {
                 { emoji: '🏠', name: 'RE vs SIP', desc: 'The ultimate Indian battle.', path: '/real-estate-vs-sip', color: 'from-purple-500/10 to-transparent' },
                 { emoji: '🧘', name: 'Market Guru', desc: '3 legends, 3 different answers.', path: '/market-guru', color: 'from-indigo-500/10 to-transparent' },
                 { emoji: '😱', name: 'Fear Index', desc: "What's your money anxiety?", path: '/fear-index', color: 'from-pink-500/10 to-transparent' },
+                { emoji: '💔', name: 'Regret Engine', desc: 'The real cost of excuses.', path: '/regret', color: 'from-red-500/10 to-transparent' },
+                { emoji: '💑', name: 'Couples Mode', desc: 'Merge your financial futures.', path: '/couples', color: 'from-pink-500/10 to-transparent' },
+                { emoji: '🦹', name: 'Villain Detector', desc: 'Your worst money habit, exposed.', path: '/spending-villain', color: 'from-yellow-500/10 to-transparent' },
+                { emoji: '📖', name: 'Glossary', desc: '50+ terms explained simply.', path: '/glossary', color: 'from-cyan-500/10 to-transparent' },
               ].map((f, i) => (
                 <Link key={f.path} to={f.path}>
                   <motion.div

@@ -37,6 +37,7 @@ import RealEstateVsSIP from './pages/RealEstateVsSIP';
 import WhatsAppNudge from './pages/WhatsAppNudge';
 import FearIndex from './pages/FearIndex';
 import MarketGuru from './pages/MarketGuru';
+import FinancialGlossary from './pages/FinancialGlossary';
 
 function App() {
   const location = useLocation();
@@ -121,6 +122,7 @@ function App() {
           <Route path="/whatsapp-nudge" element={<WhatsAppNudge />} />
           <Route path="/fear-index" element={<FearIndex />} />
           <Route path="/market-guru" element={<MarketGuru />} />
+          <Route path="/glossary" element={<FinancialGlossary />} />
         </Routes>
       </AnimatePresence>
       </div>

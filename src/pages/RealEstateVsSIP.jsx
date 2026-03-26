@@ -2,15 +2,27 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Home, TrendingUp, Trophy, Minus } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useApp } from '../context/AppContext';
 
 export default function RealEstateVsSIP() {
   const navigate = useNavigate();
-  const [propertyPrice, setPropertyPrice] = useState(5000000);
+  const { state } = useApp();
+  const demoR = state.demoData?.reVsSip;
+  const [propertyPrice, setPropertyPrice] = useState(demoR?.propertyPrice || 5000000);
   const [rentalYield, setRentalYield] = useState(2.5);
   const [appreciation, setAppreciation] = useState(6);
-  const [sipReturn, setSipReturn] = useState(12);
-  const [loanRate, setLoanRate] = useState(8.5);
+  const [sipReturn, setSipReturn] = useState(demoR?.sipReturn || 12);
+  const [loanRate, setLoanRate] = useState(demoR?.loanRate || 8.5);
   const [years] = useState(20);
+
+  useEffect(() => {
+    if (state.demoData?.reVsSip) {
+      const d = state.demoData.reVsSip;
+      setPropertyPrice(d.propertyPrice);
+      setLoanRate(d.loanRate);
+      setSipReturn(d.sipReturn);
+    }
+  }, [state.demoData]);
 
   // Real Estate calc
   const downPayment = propertyPrice * 0.2;

@@ -2,12 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, TrendingDown, Landmark, BarChart3, LineChart } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useApp } from '../context/AppContext';
 
 export default function InflationMonster() {
   const navigate = useNavigate();
-  const [cash, setCash] = useState(500000);
+  const { state } = useApp();
+  const demoI = state.demoData?.inflation;
+  const [cash, setCash] = useState(demoI?.savingsAmount || 500000);
   const [eatenToday, setEatenToday] = useState(0);
   const [showFix, setShowFix] = useState(null);
+
+  useEffect(() => {
+    if (state.demoData?.inflation) {
+      setCash(state.demoData.inflation.savingsAmount);
+    }
+  }, [state.demoData]);
   const inflationRate = 0.06;
   const dailyLoss = (cash * inflationRate) / 365;
 

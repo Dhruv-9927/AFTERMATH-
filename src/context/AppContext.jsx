@@ -8,6 +8,7 @@ const initialState = {
   personalityData: null,
   currentPage: '/',
   hasCompletedOnboarding: false,
+  demoData: null,
 };
 
 const AppContext = createContext();
@@ -28,6 +29,8 @@ function appReducer(state, action) {
       return { ...state, currentPage: action.payload };
     case 'COMPLETE_ONBOARDING':
       return { ...state, hasCompletedOnboarding: true };
+    case 'SET_DEMO_DATA':
+      return { ...state, demoData: action.payload };
     default:
       return state;
   }

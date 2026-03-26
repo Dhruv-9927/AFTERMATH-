@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Brain, Shield, AlertTriangle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useApp } from '../context/AppContext';
 
 const QUESTIONS = [
   'Do you check your bank account balance daily?',
@@ -31,9 +32,26 @@ const FEAR_PLAN = [
 
 export default function FearIndex() {
   const navigate = useNavigate();
-  const [answers, setAnswers] = useState({});
-  const [done, setDone] = useState(false);
+  const { state } = useApp();
+  const demoF = state.demoData?.fear;
+  const initAnswers = (() => {
+    if (!demoF) return {};
+    const a = {};
+    demoF.answers.forEach((val, i) => { a[i] = val; });
+    return a;
+  })();
+  const [answers, setAnswers] = useState(initAnswers);
+  const [done, setDone] = useState(!!demoF);
   const currentQ = Object.keys(answers).length;
+
+  useEffect(() => {
+    if (state.demoData?.fear) {
+      const demoAnswers = {};
+      state.demoData.fear.answers.forEach((val, i) => { demoAnswers[i] = val; });
+      setAnswers(demoAnswers);
+      setDone(true);
+    }
+  }, [state.demoData]);
 
   const answer = (qi, val) => {
     const newAns = { ...answers, [qi]: val };

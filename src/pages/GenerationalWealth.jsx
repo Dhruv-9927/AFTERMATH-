@@ -1,12 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Heart, Users, AlertTriangle, Home, Building } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useApp } from '../context/AppContext';
 
 export default function GenerationalWealth() {
   const navigate = useNavigate();
+  const { state } = useApp();
+  const demoG = state.demoData?.generational;
   const [step, setStep] = useState('input');
-  const [form, setForm] = useState({ targetAmount: 10000000, childAge: 25, lifestyle: 'comfortable' });
+  const [form, setForm] = useState({ targetAmount: 10000000, childAge: demoG?.childStartAge || 25, lifestyle: 'comfortable' });
+
+  useEffect(() => {
+    if (state.demoData?.generational) {
+      setForm(f => ({ ...f, childAge: state.demoData.generational.childStartAge }));
+    }
+  }, [state.demoData]);
 
   const lifestyleMult = { basic: 0.8, comfortable: 1, premium: 1.5 };
   const target = form.targetAmount * (lifestyleMult[form.lifestyle] || 1);
