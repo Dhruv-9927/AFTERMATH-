@@ -27,6 +27,11 @@ export const DEMO_USER = {
 
 export const DEMO_HEALTH_SCORE = {
   score: 72,
+  verdict: "You have a solid foundation with strong savings, but critical gaps in insurance and tax optimization are holding you back.",
+  percentile: 68,
+  strength: "Strong savings habit — 35% of income invested monthly",
+  weakness: "Under-utilized 80C limit and no term life insurance",
+  personality: "Balanced Builder",
   dimensions: [
     { name: 'Emergency Fund', score: 55, max: 100, desc: 'Covers 3.6 months — needs 6 months minimum' },
     { name: 'Insurance', score: 30, max: 100, desc: 'No term insurance, only employer health coverage' },
@@ -36,16 +41,23 @@ export const DEMO_HEALTH_SCORE = {
     { name: 'Retirement Readiness', score: 60, max: 100, desc: 'SIP ₹50K/mo, need ₹5Cr for FIRE at 45' },
   ],
   actions: [
-    { title: 'Open a PPF Account', desc: 'Start ₹500/mo in PPF for tax-free 80C savings', priority: 'high' },
-    { title: 'Buy ₹1Cr Term Insurance', desc: 'Premium ~₹700/mo at age 28 — protect your family', priority: 'critical' },
-    { title: 'Increase SIP by ₹5K', desc: 'Take it from ₹50K to ₹55K — adds ₹42L over 20 years', priority: 'medium' },
+    { title: 'Open a PPF Account', desc: 'Start contributing to PPF to max out 80C and get risk-free tax-free returns.', time: '15 mins', impact: 46000 },
+    { title: 'Buy ₹1Cr Term Insurance', desc: 'Premium ~₹700/mo at age 28. Pure term life insurance protects your family.', time: '30 mins', impact: 10000000 },
+    { title: 'Increase SIP by ₹5K', desc: 'Take monthly SIP from ₹50K to ₹55K — adds ₹42L over 20 years.', time: '10 mins', impact: 4200000 },
+    { title: 'Build Emergency Fund', desc: 'Move your ₹2L savings into a separate sweep-in FD for instant liquidity.', time: '20 mins', impact: 10000 },
+    { title: 'Claim HRA Exemption', desc: 'Submit your rent receipts to your employer immediately for tax savings.', time: '5 mins', impact: 25000 },
   ],
 };
 
 export const DEMO_PERSONALITY = {
   type: 'Balanced Builder',
+  personality: 'Balanced Builder',
+  match: 89,
   emoji: '🏗️',
   description: 'You are methodical and disciplined. You save consistently but sometimes miss aggressive wealth-building opportunities.',
+  strength: 'High savings velocity with diversified core holdings',
+  weakness: 'Under-invested in equity and missing tax optimizations',
+  tip: 'Shift liquid funds to arbitrage for better post-tax returns and increase equity allocation to 60%.',
   strengths: ['Consistent saver', 'Low debt tolerance', 'Emergency fund conscious'],
   weaknesses: ['Under-invested in equity', 'Missing tax optimizations', 'No insurance safety net'],
 };
